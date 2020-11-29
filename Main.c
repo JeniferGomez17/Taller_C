@@ -1,9 +1,42 @@
 #include <stdio.h>
 
 /*
- * Funciones para validación de datos.
+ * Funciones para encriptar y desencriptar.
  */
+void encrypt(char Message[100], int number);
+void decrypt(char Message[100], int number);
 
+char* ABC = "ABCDEFGHIJKLMN\xa5OPQRSTUVWXYZ";
+char* abc = "abcdefghijklmn\xa4opqrstuvwxyz";
+
+void encrypt(char Message[100], int number) {
+    int i;
+    char*p;
+    for (i = 0; Message[i]; i++) {
+        if (p = strchr(ABC, Message[i])) {
+            Message[i] = ABC[(p - ABC + number) % 27];
+        }
+        if (p = strchr(abc, Message[i])) {
+            Message[i] = abc[(p - abc + number) % 27];
+        }
+    }
+    printf("\nEl mensaje encriptado es:\n%s\n", Message);
+}
+
+void decrypt(char Message[100], int number) {
+    char*p;
+    int i;
+    for (i = 0; Message[i]; i++) {
+        if (p = strchr(ABC, Message[i])) {
+            Message[i] = ABC[(p - ABC - number + 27) % 27];
+        }
+        if (p = strchr(abc, Message[i])) {
+            Message[i] = abc[(p - abc - number + 27) % 27];
+        }
+
+    }
+    printf("\nEl mensaje desencriptado es:\n%s\n", Message);
+}
 void mainMenu(){
     char option;
     do{
@@ -30,9 +63,20 @@ void mainMenu(){
                 break;
             case '3':
                 printf("%s","**Encriptar Cadena**\n");
+                char cadena[100];
+                printf("El algoritmo de encriptacion consiste en aumenta en 1 cada letra del mensaje ingresado\n");
+                printf("Ingrese el mensaje: ");
+                fflush(stdin);
+                fgets(cadena, 100, stdin);
+                encrypt(cadena, 1);
                 break;
             case '4':
                 printf("%s","**Desencriptar**\n");
+                 printf("El algoritmo de desencriptacion consiste en disminuir en 1 cada letra del mensaje ingresado\n");
+                printf("Ingrese el mensaje: ");
+                fflush(stdin);
+                fgets(cadena, 100, stdin);
+                decrypt(cadena, 1);
                 break;
             case '5':
                 printf("%s","**Llenar acarcteres por izquierda o por derecha**\n");
