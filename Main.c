@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-
+#define TAM_MAXIMO 80
 /*
  * Funciones para encriptar y desencriptar.
  */
@@ -10,6 +10,14 @@ void decrypt(char Message[100], int number);
 
 char* ABC = "ABCDEFGHIJKLMN\xa5OPQRSTUVWXYZ";
 char* abc = "abcdefghijklmn\xa4opqrstuvwxyz";
+
+ int longitud1;
+ char cadena [TAM_MAXIMO];
+ char *relleno = "A";
+ int x, i;
+ int op;
+ char caracter[1];
+ int lgcadena;
 
 void encrypt(char Message[100], int number) {
     int i;
@@ -80,11 +88,43 @@ void mainMenu(){
                 fgets(cadena, 100, stdin);
                 decrypt(cadena, 1);
                 break;
-            case '5':
-                printf("%s","**Llenar acarcteres por izquierda o por derecha**\n");
+            case '5':               
+                printf("Digite cuantas veces desea que se repita el carácter\n");
+                scanf("%d", &longitud1);
+
+                printf("Cadena a mostrar\n");
+                scanf("%s", cadena);
+
+                printf("¿Por donde desea llenar?\n1. Derecha\n2. Izquierda\nIngrese opción\n");
+                scanf("%d", &op);
+
+                if(op == 1){
+                    printf("%s", cadena);
+                    for(x = 0; x < longitud1; x++){
+                        printf("%s", relleno);
+                    }
+                }else{
+                    for(x = 0; x < longitud1; x++){
+                        printf("%s", relleno);
+                    }
+                    printf("%s", cadena);
+                }
                 break;
             case '6':
-                printf("%s","**Borrar caracteres de una cadena**\n");
+                
+    			printf("ingresa una cadena: \n");
+    		    gets(cadena);
+    			lgcadena=strlen(cadena);
+    
+    			printf("ingresa el carácter a eliminar: \n");
+    			gets(caracter);
+    
+				for (i = 0; i < lgcadena; i++) {		
+     				if (cadena[i] != 'o') {
+         				putchar(cadena[i]);
+    	 			}	
+				}
+				break;
             case '7':
                 printf("%s","**Interseccion**\n"); 
                 break;
@@ -103,3 +143,7 @@ int main() {
     mainMenu();
     return (0);
 }
+
+
+
+
