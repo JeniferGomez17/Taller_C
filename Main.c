@@ -18,6 +18,12 @@ char* abc = "abcdefghijklmn\xa4opqrstuvwxyz";
  int op;
  char caracter[1];
  int lgcadena;
+ 
+ char cadena1[50];
+	int j;
+	char cadena2[50];
+	int lgcadena1;
+	int longCadena2;
 
 void encrypt(char Message[100], int number) {
     int i;
@@ -125,8 +131,22 @@ void mainMenu(){
     	 			}	
 				}
 				break;
-            case '7':
-                printf("%s","**Interseccion**\n"); 
+            case '7':             
+				printf("Ingresa una cadena: \n");
+				gets(cadena1);
+				lgcadena1=strlen(cadena1);
+		
+				printf("Ingrese otra cadena: \n");
+				gets(cadena2);
+				longCadena2 = strlen(cadena2);
+			
+				for(i = 0; i < lgcadena1;i++){
+					for(j = 0; j < longCadena2; j++){
+						if(cadena1[i] == cadena2[j]){
+							putchar(cadena2[j]);
+						}	
+					}
+				}
                 break;
             case '8':
                 printf("%s","**Diferencia entre dos cadenas**\n"); 
@@ -143,7 +163,5 @@ int main() {
     mainMenu();
     return (0);
 }
-
-
 
 
